@@ -9,23 +9,23 @@ LKP_API int LKP_CALLCONV QueryLibrary(const int funcnr, const int query, int *iv
          EndoData[10];
     char *ArgSData[10];
   } qd[] = {
-            "Lookup", "Lookup.1.0.2.2.1.val.E",0,1,0,2,2,1,0,0,0,0,0,0,0,0,0,"val","VARNAME","","","","","","","",""
+    (char*) "Lookup", (char*) "Lookup.1.0.2.2.1.val.E",0,1,0,2,2,1,0,0,0,0,0,0,0,0,0,(char*) "val",(char*) "VARNAME",(char*) "",(char*) "",(char*) "",(char*) "",(char*) "",(char*) "",(char*) "",(char*) ""
            };
 
   if(funcnr<=0) {
     *iv = -1;
-    *pv = "Bad parameter(s)";
+    *pv = (char*)"Bad parameter(s)";
     switch(query) {
       case 0:
         *iv = APIVER;
       break;
       case 1:
         *iv = LIBVER;
-        *pv = "GAMS Development Corporation";
+        *pv = (char*) "GAMS Development Corporation";
       break;
       case 2:
         *iv = NoFunc;
-        *pv = "Lookups from mdl files";
+        *pv = (char*) "Lookups from mdl files";
       break;
     }
   }
@@ -60,7 +60,7 @@ LKP_API int LKP_CALLCONV QueryLibrary(const int funcnr, const int query, int *iv
       case 1010:
         if(query-1001<=qd[funcnr-1].FuncData[4]) {    /* check against maxargs */
           *iv = qd[funcnr-1].EndoData[query - 1001];
-          *pv = qd[funcnr-1].ArgSData[query - 1001];
+          *pv = (char*) qd[funcnr-1].ArgSData[query - 1001];
         } else
           return 0;
         break;
